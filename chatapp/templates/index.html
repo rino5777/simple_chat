@@ -1,0 +1,280 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <!-- SEO Meta Tags-->
+   
+    <title>Chat</title>
+    <!-- Favicon and Touch Icons-->
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href=" {% static 'webfonts/inter/inter.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+</head>
+{% block body %}
+<body class="chats-tab-open">
+{% endblock body %}
+    
+    <div class="main-layout">
+       
+        <div class="navigation navbar navbar-light bg-primary">
+         
+            <a class="d-none d-xl-block bg-light rounded p-1" href="{% url 'chat:home' %}">
+              
+                <svg height="30" width="30" viewBox="0 0 512 511" ><g><path d="m120.65625 512.476562c-7.25 0-14.445312-2.023437-20.761719-6.007812-10.929687-6.902344-17.703125-18.734375-18.117187-31.660156l-1.261719-41.390625c-51.90625-46.542969-80.515625-111.890625-80.515625-183.992188 0-68.816406 26.378906-132.101562 74.269531-178.199219 47.390625-45.609374 111.929688-70.726562 181.730469-70.726562s134.339844 25.117188 181.730469 70.726562c47.890625 46.097657 74.269531 109.382813 74.269531 178.199219 0 68.8125-26.378906 132.097657-74.269531 178.195313-47.390625 45.609375-111.929688 70.730468-181.730469 70.730468-25.164062 0-49.789062-3.253906-73.195312-9.667968l-46.464844 20.5c-5.035156 2.207031-10.371094 3.292968-15.683594 3.292968zm135.34375-471.976562c-123.140625 0-216 89.816406-216 208.925781 0 60.667969 23.957031 115.511719 67.457031 154.425781 8.023438 7.226563 12.628907 17.015626 13.015625 27.609376l.003906.125 1.234376 40.332031 45.300781-19.988281c8.15625-3.589844 17.355469-4.28125 25.921875-1.945313 20.132812 5.554687 41.332031 8.363281 63.066406 8.363281 123.140625 0 216-89.816406 216-208.921875 0-119.109375-92.859375-208.925781-216-208.925781zm-125.863281 290.628906 74.746093-57.628906c5.050782-3.789062 12.003907-3.839844 17.101563-.046875l55.308594 42.992187c16.578125 12.371094 40.304687 8.007813 51.355469-9.433593l69.519531-110.242188c6.714843-10.523437-6.335938-22.417969-16.292969-14.882812l-74.710938 56.613281c-5.050781 3.792969-12.003906 3.839844-17.101562.046875l-55.308594-41.988281c-16.578125-12.371094-40.304687-8.011719-51.355468 9.429687l-69.554688 110.253907c-6.714844 10.523437 6.335938 22.421874 16.292969 14.886718zm0 0" data-original="#000000" class="active-path" data-old_color="#000000" fill="#665dfe"/></g> </svg>
+                
+            </a>
+        </div>
+     {% block content %}
+     {% endblock content %}
+        {% block profile %}
+        <aside class="sidebar">
+            <!-- Tab Content Start -->
+            <div class="tab-content">
+                <!-- Chat Tab Content Start -->
+                <div  id="chats-content">
+                    <div class="d-flex flex-column h-100">
+                        <div class="hide-scrollbar h-100" id="chatContactsList">
+                            
+                            <!-- Chat Header Start -->
+                            <div class="sidebar-header sticky-top p-2">
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <!-- Chat Tab Pane Title Start -->
+                                    <h5 class="font-weight-semibold mb-0">Chats</h5>
+                                    <!-- Chat Tab Pane Title End -->
+
+                                    <ul class="nav flex-nowrap">
+
+                                       
+                                        
+            
+
+                                        <li class="nav-item list-inline-item mr-0">
+                                            <div class="dropdown">
+                                                <a class="nav-link text-muted px-1" href="#" role="button" title="Details" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <!-- Default :: Inline SVG -->
+                                                    <svg class="hw-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                                    </svg>
+                                                        
+                                                    <!-- Alternate :: External File link -->
+                                                    <!-- <img src="./../assets/media/heroicons/outline/dots-vertical.svg" alt="" class="injectable hw-20"> -->
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="{% url 'chat:create' %}" role="button"  >Create Room</a>
+                                                    <a class="dropdown-item" href="#" role="button" data-toggle="modal" data-target="#inviteOthers">Invite Others</a>
+                                                    <a class="dropdown-item" href="{% url 'chat:profile' %}" role="button"  >Profile</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                
+                               
+                            </div>
+                            <!-- Chat Header End -->
+
+                            <!-- Chat Contact List Start -->
+                            <ul class="contacts-list" id="chatContactTab" data-chat-list="">
+                                
+                                <!-- Chat Item Start -->
+                             
+                                <!-- Chat Item End -->
+                                {% for room in rooms %}
+                                <!-- Chat Item Start -->
+                                <li class="contacts-item groups">
+                                    <a class="contacts-link"  href="{% url 'chat:join-room' room.slug %}">
+                                        <div class="avatar bg-success text-light">
+                                            <span>
+                                                <!-- Default :: Inline SVG -->
+                                                <svg class="hw-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                                </svg>
+
+                                                <!-- Alternate :: External File link -->
+                                                <!-- <img class="injectable" src="./../assets/media/heroicons/outline/user-group.svg" alt=""> -->
+                                            </span>
+                                        </div>
+                                        <div class="contacts-content">
+                                            <div class="contacts-info">
+                                                <h6 class="chat-name">{{ room.name }}</h6>
+                                                <div class="chat-time"><span>10:20 pm</span></div>
+                                            </div>
+                                            <div class="contacts-texts">
+                                               
+                                                <div class="d-inline-flex align-items-center ml-1">
+                                                    <!-- Default :: Inline SVG -->
+                                                    <svg class="hw-16 text-muted" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                                                    </svg>
+
+                                                    <!-- Alternate :: External File link -->
+                                                    <!-- <img class="injectable hw-16 text-muted" src="./../assets/media/heroicons/solid/lock-closed.svg" alt=""> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <!-- Chat Item End -->
+                                {% endfor %}
+                                <!-- Chat Item Start -->
+                               
+                                <!-- Chat Item End -->
+
+                                
+                         
+
+                               
+                            </ul>
+                            <!-- Chat Contact List End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Chats Tab Content End -->
+
+               
+                <!-- Friends Tab Content End -->
+
+                <!-- Profile Tab Content Start -->
+
+                <!-- Profile Tab Content End -->
+            </div>
+            <!-- Tab Content End -->
+        </aside>
+        {% endblock profile %}
+        <!-- Sidebar End -->
+
+        <!-- Main Start -->
+        {% block main_content %}
+        <main class="main">
+
+            <!-- Chats Page Start -->
+            <div class="chats">
+                <div class="d-flex flex-column justify-content-center text-center h-100 w-100">
+                    <div class="container">
+                        <div class="avatar avatar-lg mb-2">
+                            <img  src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'media/avatar/no_image.png' %}{% endif %}" alt="">
+                        </div>
+
+                        <h5>Welcome, {{ user.email }}!</h5>
+                        <p class="text-muted">Please select a chat to Start messaging.</p>
+                       
+                      
+                    </div>
+                </div>
+            </div>
+            <!-- Chats Page End -->
+
+           
+
+        </main>
+        {% endblock main_content %}
+        <!-- Main End -->
+
+      
+
+        <div class="backdrop"></div>
+
+        <!-- All Modals Start -->
+
+        <!-- Modal 1 :: Start a Conversation-->
+       
+
+       
+        <!-- Modal 3 :: Invite Others -->
+        <div class="modal modal-lg-fullscreen fade" id="inviteOthers" tabindex="-1" role="dialog" aria-labelledby="inviteOthersLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog-zoom">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inviteOthersLabel">Invite Others</h5>
+                        
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body hide-scrollbar">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="inviteEmailAddress">Email address</label>
+                                        <input type="email" class="form-control form-control-md" id="inviteEmailAddress" placeholder="Type email address here" value="">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="inviteMessage">Invitation message</label>
+                                        <textarea class="form-control form-control-md no-resize hide-scrollbar" id="inviteMessage" placeholder="Write your message here" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link text-muted" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send Invitation</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+      
+       
+        {% block additional %}
+        {% endblock additional %}
+       
+        
+        
+
+        <!-- All Modals End -->
+        
+    </div>
+    <!-- Main Layout End -->
+    
+    <!-- Javascript Files -->
+    
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'svg-inject/svg-inject.min.js' %}"></script>
+    <script src="{% static 'modal-stepes/modal-steps.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+    
+    {% block js %}
+    <script>
+    // Получаем доступ к полям формы
+    const nameInput = document.getElementById('name');
+    const slugInput = document.getElementById('slug');
+
+    // Функция для обновления поля "slug" на основе значения поля "name"
+    function updateSlug() {
+        const nameValue = nameInput.value.trim().toLowerCase().replace(/\s+/g, '-');
+        slugInput.value = nameValue;
+    }
+
+    // Обновляем slug при изменении значения в поле "name"
+    nameInput.addEventListener('input', updateSlug);
+
+    // Вызываем функцию updateSlug() при загрузке страницы, чтобы заполнить slug изначально
+    updateSlug();
+</script>
+    {% endblock js %}
+</body>
+
+</html>

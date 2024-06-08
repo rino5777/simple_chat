@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+
+
+
+
+
+
+
+{% block content %}
+
+
+
+
+        
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="passwordModalLabel">Enter the password  {{ room.name }}</h5>
+            
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{% url 'chat:join-room' room.slug %}">
+                {% csrf_token %}
+                {{ roompasswordform.as_p }}
+                <div class="modal-footer">
+                    
+                    <button type="submit" class="btn btn-primary">Connect</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+           
+            {% block profile %}
+            {% endblock profile %}
+            {% block main_content %}
+            {% endblock main_content %}

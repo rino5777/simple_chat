@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block main_content %}
+<main class="main">
+    <div class="container" style="margin-top: 20%;">
+        <form method="post" class="mx-auto" style="max-width: 400px;">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_name">Name:</label>
+                {{ form_room.name }}
+            </div>
+            <div class="form-group">
+                <label for="id_name">Password:</label>
+                {{ form_room.password }}
+            </div>
+            <div class="form-group" style="display: none;">
+                <label for="id_slug">Slug:</label>
+                {{ form_room.slug }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</main>
+
+
+
+{% endblock main_content %}
+{% block js %}
+
+<script>
+    // Получаем доступ к полям формы
+    const nameInput = document.getElementById('name');
+    const slugInput = document.getElementById('slug');
+
+    // Функция для обновления поля "slug" на основе значения поля "name"
+    function updateSlug() {
+        const nameValue = nameInput.value.trim().toLowerCase().replace(/\s+/g, '-');
+        slugInput.value = nameValue;
+    }
+
+    // Обновляем slug при изменении значения в поле "name"
+    nameInput.addEventListener('input', updateSlug);
+
+    // Вызываем функцию updateSlug() при загрузке страницы, чтобы заполнить slug изначально
+    updateSlug();
+</script>
+{% endblock js %}

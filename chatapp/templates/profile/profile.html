@@ -1,0 +1,218 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block body %}
+<body class = 'profile-tab-open'>
+{% endblock body %}
+
+
+{% block profile %}
+
+<aside class="sidebar">
+    <!-- Tab Content Start -->
+    <div class="tab-content">
+        <div  id="profile-content">
+    <div class="d-flex flex-column h-100">
+        <div class="hide-scrollbar">
+            <!-- Sidebar Header Start -->
+            <div class="sidebar-header sticky-top p-2 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- Chat Tab Pane Title Start -->
+                    <h5 class="font-weight-semibold mb-0">Profile</h5>
+                    <!-- Chat Tab Pane Title End -->
+
+                    <ul class="nav flex-nowrap">
+
+                       
+                        
+
+
+                        <li class="nav-item list-inline-item mr-0">
+                            <div class="dropdown">
+                                <a class="nav-link text-muted px-1" href="#" role="button" title="Details" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <!-- Default :: Inline SVG -->
+                                    <svg class="hw-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                    </svg>
+                                        
+                                    <!-- Alternate :: External File link -->
+                                    <!-- <img src="./../assets/media/heroicons/outline/dots-vertical.svg" alt="" class="injectable hw-20"> -->
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{% url 'chat:create' %}" role="button"  >Create Room</a>
+                                    <a class="dropdown-item" href="#" role="button" data-toggle="modal" data-target="#inviteOthers">Invite Others</a>
+                                    <a class="dropdown-item" href="{% url 'chat:profile' %}" role="button"  >Profile</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <!-- Sidebar Header end -->
+
+            <!-- Sidebar Content Start -->
+            <div class="container-xl">
+                <div class="row">
+                    <div class="col">
+                       
+                        <!-- Card Start -->
+                        <div class="card card-body card-bg-5">
+
+                            <!-- Card Details Start -->
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="avatar avatar-lg mb-3">
+                                    <img  src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'media/avatar/no_image.png' %}{% endif %}" alt="">
+                                </div>
+
+                                <div class="d-flex flex-column align-items-center">
+                                    <h5>{{ user.email }}</h5>
+                                </div>
+
+                                <div class="d-flex">
+                                    <button class="btn btn-outline-default mx-1" type="button" onclick="window.location.href='{% url 'user:logout' %}'">
+                                        <!-- Default :: Inline SVG -->
+                                        <svg class="hw-18 d-none d-sm-inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                                        </svg>
+                                        
+                                        <!-- Alternate :: External File link -->
+                                        <!-- <img class="injectable hw-18" src="./../assets/media/heroicons/outline/logout.svg" alt=""> -->
+                                        
+                                        <span>Logout</span> 
+                                    </button>
+                                    <button class="btn btn-outline-default mx-1 d-xl-none" data-profile-edit="{% url 'user:logout' %}" type="button">
+                                        
+                                        <!-- Default :: Inline SVG -->
+                                        <svg class="hw-18 d-none d-sm-inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                            
+                                        <!-- Alternate :: External File link -->
+                                        <!-- <img class="injectable hw-18" src="./../assets/media/heroicons/outline/cog.svg" alt=""> -->
+                                        <span>Settings</span> 
+                                    </button>
+                         
+
+                                </div>
+                            </div>
+                            <!-- Card Details End -->
+
+                        
+
+                        </div>
+              
+                      
+
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar Content End -->
+        </div>
+    </div>
+
+
+<!-- Tab Content End -->
+</aside>
+
+{% endblock profile %}
+
+{% block main_content %}
+
+<main class="main">
+<div class="profile">
+    <div class="page-main-heading sticky-top py-2 px-3 mb-3">
+
+        <!-- Chat Back Button (Visible only in Small Devices) -->
+        <button class="btn btn-secondary btn-icon btn-minimal btn-sm text-muted d-xl-none" type="button" data-close="">
+            <svg class="hw-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+              </svg>
+            <!-- <img class="injectable hw-20" src="./../assets/media/heroicons/outline/arrow-left.svg" alt=""> -->
+        </button>
+
+        <div class="pl-2 pl-xl-0">
+            <h5 class="font-weight-semibold">Settings</h5>
+            <p class="text-muted mb-0">Update Personal Information &amp; Settings</p>
+        </div>
+    </div>
+
+    <div class="container-xl px-2 px-sm-3">
+        <div class="row">
+            <div class="col">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h6 class="mb-1">Account</h6>
+                        <p class="mb-0 text-muted small">Update personal &amp; contact information</p>
+                    </div>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-body">
+                        <div class="row">
+                           
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="emailAddress">Email address</label>
+                                    {{info_form.email}}
+                                   
+                                </div>
+                            </div>
+                           
+                        </div>
+                        </div>
+
+                        <div class="card-footer d-flex justify-content-end">
+
+                        <button type="submit"  class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+             
+
+              
+               
+               
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-xl px-2 px-sm-3">
+        <div class="row">
+            <div class="col">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h6 class="mb-1">Update image profile</h6>
+                    
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-body">
+                        <div class="row">
+                           
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                   
+                                    {{avatar_form.avatar}}
+                                   
+                                </div>
+                            </div>                           
+                        </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-end">
+
+                        <button type="submit"  class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock main_content %}

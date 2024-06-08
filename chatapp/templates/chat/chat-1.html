@@ -1,0 +1,326 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+
+        {% block main_content %}
+        <main class="main main-visible">
+
+            <!-- Chats Page Start -->
+            <div class="chats">
+                <div class="chat-body">
+
+                    <!-- Chat Header Start-->
+                    <div class="chat-header">
+                        <!-- Chat Back Button (Visible only in Small Devices) -->
+                        <button class="btn btn-secondary btn-icon btn-minimal btn-sm text-muted d-xl-none" type="button" data-close="">
+                            <!-- Default :: Inline SVG -->
+                            <svg class="hw-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                            </svg>
+
+                            <!-- Alternate :: External File link -->
+                            <!-- <img class="injectable hw-20" src="./../assets/media/heroicons/outline/arrow-left.svg" alt=""> -->
+                        </button>
+
+                        <!-- Chat participant's Name -->
+                        <div class="media chat-name align-items-center text-truncate">
+                            <div class="avatar  d-none d-sm-inline-block mr-3">
+
+                                <div class="avatar bg-success text-light">
+                                    <span>
+                                        <!-- Default :: Inline SVG -->
+                                        <svg class="hw-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                        </svg>
+
+                                        <!-- Alternate :: External File link -->
+                                        <!-- <img class="injectable" src="./../assets/media/heroicons/outline/user-group.svg" alt=""> -->
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            
+
+                            <div class="media-body align-self-center ">
+                                
+                                    
+                                    <h6 class="text-truncate mb-0">group: {{ room.name }}</h6>
+                                   
+                                
+                               
+                                
+                            </div>
+                        </div>
+
+                        <!-- Chat Options -->
+                       
+                    </div>
+                    <!-- Chat Header End-->
+
+                    <!-- Search Start -->
+                    <div class="collapse border-bottom px-3" id="searchCollapse">
+                        <div class="container-xl py-2 px-0 px-md-3">
+                            <div class="input-group bg-light ">
+                                <input type="text" class="form-control form-control-md border-right-0 transparent-bg pr-0" placeholder="Search">
+                                <div class="input-group-append">
+                                    <span class="input-group-text transparent-bg border-left-0">
+                                        <!-- Default :: Inline SVG -->
+                                        <svg class="hw-20 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                          
+                                        <!-- Alternate :: External File link -->
+                                        <!-- <img class="injectable hw-20" src="./../assets/media/heroicons/outline/search.svg" alt="Search icon"> -->
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- Search End -->
+
+                    <!-- Chat Content Start-->
+                    <div class="chat-content p-2" id="messageBody">
+                        <div class="container">
+
+                          
+
+                            <!-- Message Day Start -->
+                            <div class="message-day" id="chat-messages">
+
+                              
+                                {% for m in messages %}
+                                {% if request.user.email == m.user.email %}
+                                 <!-- Self Message Start -->
+                                <div class="message self">
+                                    <div class="message-wrapper">
+                                        <div class="message-content">
+                                            
+                                            <span>{{ m.content }}</span></div>
+                                    </div>
+                                    <div class="message-options">
+                                        <div class="avatar avatar-sm"><img alt="" src="{% if m.user.avatar %}{{ m.user.avatar.url }}{% else %}{% static 'media/avatar/no_image.png' %}{% endif %}"></div>
+
+                                        <span class="message-date"></span>
+                                        
+
+                                        
+                                    </div>
+                                </div>
+                                {% else %}
+                                <!-- Self Message End -->
+                                <!-- Received Message Start -->
+
+                                <div class="message"  >
+                                    <div class="message-wrapper">
+                                        <div class="message-content">
+
+                                            <h6 class="text-dark">{{ m.user.email }}</h6>
+                                            <span>{{ m.content }}</span></h6>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="message-options">
+                                        <div class="avatar avatar-sm"><img alt="" src="{% if m.user.avatar %}{{ m.user.avatar.url }}{% else %}{% static 'media/avatar/no_image.png' %}{% endif %}"></div>
+                                        <span class="message-date"></span>
+                                        
+                                    </div>
+                                </div>
+                                <!-- Received Message End -->
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <!-- Message Day End -->
+                        </div>
+
+                        <!-- Scroll to finish -->
+                        <div class="chat-finished" id="chat-finished"></div>
+                    </div>
+                    <!-- Chat Content End-->
+
+                    <!-- Chat Footer Start-->
+                    <form method="post" action="." class="flex">
+                    <div class="chat-footer">
+                        <div class="attachment">
+                           
+                        </div>
+                        
+                        
+                            {% csrf_token %}
+                        <textarea class="form-control emojionearea-form-control" id="chat-message-input" rows="1" placeholder="Type your message here..."></textarea>
+
+                        <div class="btn btn-primary btn-icon send-icon rounded-circle text-light mb-1" role="button" id="chat-message-submit">
+
+                            <svg class="hw-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </div>
+                    
+                    </div>
+                </form>
+                </div>
+            </div>
+        </main>
+        {% endblock main_content %}
+        <!-- Main End -->
+
+        <!-- App Add-ons Start -->
+      
+        <!-- App Add-ons End -->
+
+        <div class="backdrop"></div>
+ 
+        {% block additional %}
+    
+    <!-- Main Layout End -->
+    {{ room.slug|json_script:"json-roomname" }} 
+    <!-- выводит в формате json  (что перевод|json_script: название перем -django) -->
+    
+    {{ request.user.email|json_script:"json-email" }}
+    
+    {% endblock additional %}
+
+    <!-- Javascript Files -->
+    <script src="{% static 'jquery/jquery-3.5.0.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'svg-inject/svg-inject.min.js' %}"></script>
+    <script src="{% static 'modal-stepes/modal-steps.min.js' %}"></script>
+    <script src="{% static 'emojione/emojionearea.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+    <script>
+
+        
+        // Scroll to end of chat
+        document.querySelector('.chat-finished').scrollIntoView({
+            block: 'end',               // "start" | "center" | "end" | "nearest",
+            behavior: 'auto'          //"auto"  | "instant" | "smooth",
+        });
+
+    </script>
+    {% block js %}
+    
+    <script>
+        
+
+        const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+        const userEmail = JSON.parse(document.getElementById('json-email').textContent);
+        console.log('roomname is',roomName)
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/'
+            + roomName
+            + '/'
+        );
+    
+        chatSocket.onclose = function(e) {
+            console.log('onclose')
+        }
+    
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+    
+            if (data.message) {
+                let messageHtml;
+                const avatarUrl = data.avatar_url;
+                
+                if (data.email === userEmail) {
+                    messageHtml = `
+                        <div class="message self">
+                            <div class="message-wrapper">
+                                <div class="message-content">
+                                    <span>${data.message}</span>
+                                </div>
+                            </div>
+                            <div class="message-options">
+                                <div class="avatar avatar-sm">
+                                    <img alt="" src="${avatarUrl}">
+                                </div>
+                            </div>
+                        </div>`;
+                } else {
+                    messageHtml = `
+                        <div class="message">
+                            <div class="message-wrapper">
+                                <div class="message-content">
+                                    <span>${data.message}</span>
+                                </div>
+                            </div>
+                            <div class="message-options">
+                                <div class="avatar avatar-sm">
+                                    <img alt="" src="${avatarUrl}">
+                                </div>
+                            </div>
+                        </div>`;
+                }
+            
+                document.querySelector('#chat-messages').innerHTML += messageHtml;
+            
+            } else {
+                alert('The message was empty!');
+            }
+    
+            scrollToBottom();
+        };
+        
+    
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+    
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            e.preventDefault()
+    
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+    
+            console.log({
+                'message': message,
+                'email': userEmail,
+                'room': roomName
+            })
+    
+            if (chatSocket.readyState === WebSocket.OPEN) {
+                // Отправить данные через WebSocket
+                chatSocket.send(JSON.stringify({
+                    'message': message,
+                    'email': userEmail,
+                    'room': roomName
+                }));
+            } else {
+                console.log('WebSocket is not in OPEN state.');
+            }
+    
+            messageInputDom.value = '';
+    
+            return false
+        };
+    
+        /**
+        * A function for finding the messages element, and scroll to the bottom of it.
+        */
+        function scrollToBottom() {
+            let objDiv = document.getElementById("chat-messages");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+    
+
+        
+        // Add this below the function to trigger the scroll on load.
+        scrollToBottom();
+
+
+    </script>
+    {% endblock js %}
+    
+</body>
+
+</html>
