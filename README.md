@@ -7,9 +7,9 @@ This project is an asynchronous chat based on Django with the use of WebSockets.
 ( through Docker )
 >Build the Docker Image and Run the Container
 ```
- >docker-compose up --build
+ docker-compose up --build
 ```
 >Execute Database Migrations
 ```
- >docker-compose exec web python manage.py migrate
+ docker-compose exec web python manage.py migrate
  ```
